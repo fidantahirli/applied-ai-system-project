@@ -1,0 +1,28 @@
+(No GEMINI_API_KEY: skipping the LLM system.)
+
+=== Mood evaluation on 24 held-out posts ===
+system                             acc  auto-ok acc  to human
+rules (Module 3 baseline)         0.54         0.54         0
+agent offline (rules + RAG)       0.79         0.86         3
+
+By category (correct/total):
+  rules (Module 3 baseline)        {'ambiguous': '1/1', 'easy': '7/7', 'emoji': '2/3', 'mixed': '1/4', 'negation': '2/3', 'sarcasm': '0/2', 'slang': '0/4'}
+  agent offline (rules + RAG)      {'ambiguous': '1/1', 'easy': '6/7', 'emoji': '3/3', 'mixed': '3/4', 'negation': '2/3', 'sarcasm': '1/2', 'slang': '3/4'}
+
+Misses for agent offline (rules + RAG):
+  - 'Excited and a little scared about tomorrow': expected mixed, got positive (ok, 0.89)
+  - 'I just love when my laptop crashes mid essay': expected negative, got positive (ok, 0.60)
+  - 'Lowkey nervous for the interview': expected negative, got neutral (needs_human_review, 0.40)
+  - "Couldn't be prouder of my team": expected positive, got neutral (needs_human_review, 0.40)
+  - 'The weather is cloudy': expected neutral, got negative (ok, 0.80)
+
+=== Guardrail checks ===
+  [PASS] ''                                   expected=rejected             got=rejected
+  [PASS] '    '                               expected=rejected             got=rejected
+  [PASS] '!!!???'                             expected=rejected             got=rejected
+  [PASS] 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...'  expected=rejected             got=rejected
+  [PASS] 'I want to die'                      expected=needs_human_review   got=needs_human_review
+  [PASS] 'thinking about hurting myself'      expected=needs_human_review   got=needs_human_review
+Guardrails: 6/6 passed
+
+Saved details to logs/eval_results.json

@@ -1,0 +1,96 @@
+{
+  "systems": [
+    {
+      "system": "rules (Module 3 baseline)",
+      "accuracy": 0.54,
+      "correct": "13/24",
+      "auto_accepted": 24,
+      "accuracy_when_auto_accepted": 0.54,
+      "sent_to_human": 0,
+      "by_category": {
+        "ambiguous": "1/1",
+        "easy": "7/7",
+        "emoji": "2/3",
+        "mixed": "1/4",
+        "negation": "2/3",
+        "sarcasm": "0/2",
+        "slang": "0/4"
+      },
+      "misses": [
+        "'Excited and a little scared about tomorrow': expected mixed, got positive (ok, 1.00)",
+        "\"Oh wonderful, it's raining on my day off\": expected negative, got neutral (ok, 1.00)",
+        "'I just love when my laptop crashes mid essay': expected negative, got positive (ok, 1.00)",
+        "'this burger slaps fr': expected positive, got neutral (ok, 1.00)",
+        "'that movie was mid ngl': expected negative, got neutral (ok, 1.00)",
+        "'ngl we ate that performance': expected positive, got neutral (ok, 1.00)",
+        "'lost my keys again 💀': expected negative, got neutral (ok, 1.00)",
+        "'Loved the trip but hated the flight home': expected mixed, got neutral (ok, 1.00)",
+        "'Lowkey nervous for the interview': expected negative, got neutral (ok, 1.00)",
+        "\"Couldn't be prouder of my team\": expected positive, got neutral (ok, 1.00)",
+        "'That was a fun game but we lost': expected mixed, got positive (ok, 1.00)"
+      ]
+    },
+    {
+      "system": "agent offline (rules + RAG)",
+      "accuracy": 0.79,
+      "correct": "19/24",
+      "auto_accepted": 21,
+      "accuracy_when_auto_accepted": 0.86,
+      "sent_to_human": 3,
+      "by_category": {
+        "ambiguous": "1/1",
+        "easy": "6/7",
+        "emoji": "3/3",
+        "mixed": "3/4",
+        "negation": "2/3",
+        "sarcasm": "1/2",
+        "slang": "3/4"
+      },
+      "misses": [
+        "'Excited and a little scared about tomorrow': expected mixed, got positive (ok, 0.89)",
+        "'I just love when my laptop crashes mid essay': expected negative, got positive (ok, 0.60)",
+        "'Lowkey nervous for the interview': expected negative, got neutral (needs_human_review, 0.40)",
+        "\"Couldn't be prouder of my team\": expected positive, got neutral (needs_human_review, 0.40)",
+        "'The weather is cloudy': expected neutral, got negative (ok, 0.80)"
+      ]
+    }
+  ],
+  "guardrails": [
+    {
+      "input": "",
+      "expected": "rejected",
+      "got": "rejected",
+      "pass": true
+    },
+    {
+      "input": "    ",
+      "expected": "rejected",
+      "got": "rejected",
+      "pass": true
+    },
+    {
+      "input": "!!!???",
+      "expected": "rejected",
+      "got": "rejected",
+      "pass": true
+    },
+    {
+      "input": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...",
+      "expected": "rejected",
+      "got": "rejected",
+      "pass": true
+    },
+    {
+      "input": "I want to die",
+      "expected": "needs_human_review",
+      "got": "needs_human_review",
+      "pass": true
+    },
+    {
+      "input": "thinking about hurting myself",
+      "expected": "needs_human_review",
+      "got": "needs_human_review",
+      "pass": true
+    }
+  ]
+}

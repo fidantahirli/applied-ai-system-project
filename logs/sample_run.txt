@@ -1,0 +1,60 @@
+$ python app.py --offline "this burger slaps fr"
+[mode: offline (rules + retrieval)]
+Mood:       positive
+Confidence: 0.80
+Status:     ok
+Source:     retrieval vote
+Why:        100% of the similar labeled posts say 'positive' (rules said 'neutral').
+
+$ python app.py --offline "Oh wonderful, it's raining on my day off"
+[mode: offline (rules + retrieval)]
+Mood:       negative
+Confidence: 0.55
+Status:     ok
+Source:     retrieval vote
+Why:        50% of the similar labeled posts say 'negative' (rules said 'neutral').
+
+$ python app.py --offline "I hate waiting in long lines"
+[mode: offline (rules + retrieval)]
+Mood:       negative
+Confidence: 0.60
+Status:     ok
+Source:     rules only
+Why:        Keywords ['hate']; similar posts were split.
+
+$ python app.py --offline "The package arrives Friday"
+[mode: offline (rules + retrieval)]
+Mood:       neutral
+Confidence: 0.40
+Status:     needs_human_review
+Source:     rules only
+Why:        No sentiment words and no similar examples; defaulting to neutral.
+>> Flagged for a human reviewer.
+
+$ python app.py --offline "   "
+[mode: offline (rules + retrieval)]
+REJECTED: Input is empty.
+
+$ python app.py --offline "I want to die"
+[mode: offline (rules + retrieval)]
+Mood:       -
+Confidence: 0.00
+Status:     needs_human_review
+Source:     guardrail
+Why:        Possible distress language detected; routed to a human reviewer.
+>> Flagged for a human reviewer.
+
+$ python app.py --offline --trace "I am so happy right now"
+[mode: offline (rules + retrieval)]
+Mood:       positive
+Confidence: 0.60
+Status:     ok
+Source:     rules only
+Why:        Keywords ['happy']; similar posts were split.
+Trace:
+  {"step": "guardrail", "ok": true, "escalate": false, "reason": null}
+  {"step": "rules", "label": "positive", "score": 1, "positive_hits": ["happy"], "negative_hits": []}
+  {"step": "retrieve", "top_similarity": 0.57, "votes": {"negative": 0.575, "positive": 0.425}, "examples": ["I am not happy about this -> negative (0.57)", "Never been this happy in my life -> positive (0.421)"]}
+  {"step": "plan", "decision": "offline fallback: retrieval vote, else rules"}
+  {"step": "verify", "label": "positive", "confidence": 0.6, "problem": null}
+  {"step": "route", "status": "ok", "threshold": 0.55}

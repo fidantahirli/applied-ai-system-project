@@ -1,0 +1,27 @@
+flowchart TD
+    U["User post"] --> G{"Input guardrail<br/>empty / too long / distress?"}
+    G -- "invalid" --> REJ["Rejected with reason"]
+    G -- "distress language" --> H["Human reviewer"]
+    G -- "ok" --> R["Rule-based MoodAnalyzer<br/>(Module 3: keywords, negation, emojis)"]
+    R --> RET["Retriever<br/>TF-IDF similarity search"]
+    KB[("Knowledge base<br/>data/labeled_examples.csv")] --> RET
+    RET --> P{"Planner<br/>do rules and retrieved<br/>examples agree?"}
+    P -- "agree" --> V
+    P -- "disagree, LLM available" --> LLM["Gemini<br/>prompt = post + retrieved examples"]
+    P -- "disagree, offline" --> FB["Fallback<br/>retrieval vote or rules"]
+    LLM --> V{"Verifier<br/>valid label + confidence?"}
+    V -- "invalid: feedback, retry once" --> LLM
+    FB --> V
+    V --> C{"Confidence >= 0.55?"}
+    C -- "yes" --> OUT["Mood label + confidence + reason"]
+    C -- "no" --> H
+    OUT --> LOG[("logs/traces.jsonl<br/>logs/mood_agent.log")]
+    H --> LOG
+
+    subgraph Testing ["Reliability testing (offline)"]
+        T1["pytest unit tests<br/>fake LLM"]
+        T2["evaluate.py<br/>held-out test set + guardrail cases"]
+    end
+    T2 -.-> R
+    T2 -.-> P
+    TS[("data/test_set.csv")] --> T2

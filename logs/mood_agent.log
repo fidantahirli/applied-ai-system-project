@@ -1,0 +1,229 @@
+2026-11-01 11:19:13,195 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:13,200 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:13,200 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:13,201 DEBUG mood_agent: retrieve {'top_similarity': 0.326, 'votes': {'positive': 1.0}, 'examples': ['this new album slaps -> positive (0.326)', 'we ate that presentation fr -> positive (0.316)']}
+2026-11-01 11:19:13,201 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:13,201 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.8, 'problem': None}
+2026-11-01 11:19:13,201 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:13,201 INFO mood_agent: label=positive conf=0.80 status=ok source=retrieval vote text='this burger slaps fr'
+2026-11-01 11:19:13,703 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:13,706 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:13,706 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:13,706 DEBUG mood_agent: retrieve {'top_similarity': 0.276, 'votes': {'negative': 0.503, 'neutral': 0.286, 'positive': 0.211}, 'examples': ['Oh great, another Monday -> negative (0.276)', "it's whatever, I don't care -> neutral (0.276)", 'Today was a terrible day -> negative (0.209)', 'Having a great day! -> positive (0.203)']}
+2026-11-01 11:19:13,706 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:13,706 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.55, 'problem': None}
+2026-11-01 11:19:13,706 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:13,706 INFO mood_agent: label=negative conf=0.55 status=ok source=retrieval vote text="Oh wonderful, it's raining on my day off"
+2026-11-01 11:19:14,189 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:14,192 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:14,192 DEBUG mood_agent: rules {'label': 'negative', 'score': -1, 'positive_hits': [], 'negative_hits': ['hate']}
+2026-11-01 11:19:14,192 DEBUG mood_agent: retrieve {'top_similarity': 0.375, 'votes': {'mixed': 0.647, 'negative': 0.353}, 'examples': ["I don't hate it -> mixed (0.375)", 'Yeah because waiting two hours is so fun -> negative (0.283)', 'I love the way the sun sets over the ocean, but I hate how cold it gets at night -> mixed (0.144)']}
+2026-11-01 11:19:14,192 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:14,192 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.6, 'problem': None}
+2026-11-01 11:19:14,192 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:14,192 INFO mood_agent: label=negative conf=0.60 status=ok source=rules only text='I hate waiting in long lines'
+2026-11-01 11:19:14,681 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:14,683 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:14,683 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:14,683 DEBUG mood_agent: retrieve {'top_similarity': 0.0, 'votes': {}, 'examples': []}
+2026-11-01 11:19:14,683 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:14,683 DEBUG mood_agent: verify {'label': 'neutral', 'confidence': 0.4, 'problem': None}
+2026-11-01 11:19:14,683 DEBUG mood_agent: route {'status': 'needs_human_review', 'threshold': 0.55}
+2026-11-01 11:19:14,683 INFO mood_agent: label=neutral conf=0.40 status=needs_human_review source=rules only text='The package arrives Friday'
+2026-11-01 11:19:15,169 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:15,171 DEBUG mood_agent: guardrail {'ok': False, 'escalate': False, 'reason': 'Input is empty.'}
+2026-11-01 11:19:15,171 INFO mood_agent: label=None conf=0.00 status=rejected source=guardrail text='   '
+2026-11-01 11:19:15,656 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:15,658 DEBUG mood_agent: guardrail {'ok': True, 'escalate': True, 'reason': 'Possible distress language detected; routed to a human reviewer.'}
+2026-11-01 11:19:15,658 INFO mood_agent: label=None conf=0.00 status=needs_human_review source=guardrail text='I want to die'
+2026-11-01 11:19:16,171 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:16,173 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,174 DEBUG mood_agent: rules {'label': 'positive', 'score': 1, 'positive_hits': ['happy'], 'negative_hits': []}
+2026-11-01 11:19:16,174 DEBUG mood_agent: retrieve {'top_similarity': 0.57, 'votes': {'negative': 0.575, 'positive': 0.425}, 'examples': ['I am not happy about this -> negative (0.57)', 'Never been this happy in my life -> positive (0.421)']}
+2026-11-01 11:19:16,174 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,174 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.6, 'problem': None}
+2026-11-01 11:19:16,174 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,174 INFO mood_agent: label=positive conf=0.60 status=ok source=rules only text='I am so happy right now'
+2026-11-01 11:19:16,710 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:16,710 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:16,712 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,712 DEBUG mood_agent: rules {'label': 'positive', 'score': 1, 'positive_hits': ['happy'], 'negative_hits': []}
+2026-11-01 11:19:16,713 DEBUG mood_agent: retrieve {'top_similarity': 0.57, 'votes': {'negative': 0.575, 'positive': 0.425}, 'examples': ['I am not happy about this -> negative (0.57)', 'Never been this happy in my life -> positive (0.421)']}
+2026-11-01 11:19:16,713 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,713 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.6, 'problem': None}
+2026-11-01 11:19:16,713 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,713 INFO mood_agent: label=positive conf=0.60 status=ok source=rules only text='I am so happy right now'
+2026-11-01 11:19:16,713 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,713 DEBUG mood_agent: rules {'label': 'negative', 'score': -1, 'positive_hits': [], 'negative_hits': ['awful']}
+2026-11-01 11:19:16,713 DEBUG mood_agent: retrieve {'top_similarity': 0.408, 'votes': {'negative': 0.65, 'positive': 0.35}, 'examples': ['Today was a terrible day -> negative (0.408)', 'Having a great day! -> positive (0.396)', 'No cap, this is the worst day ever -> negative (0.326)']}
+2026-11-01 11:19:16,713 DEBUG mood_agent: plan {'decision': 'accept: rules and retrieved examples agree'}
+2026-11-01 11:19:16,713 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.86, 'problem': None}
+2026-11-01 11:19:16,713 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,713 INFO mood_agent: label=negative conf=0.86 status=ok source=rules+retrieval text='This day has been awful'
+2026-11-01 11:19:16,713 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,713 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,713 DEBUG mood_agent: retrieve {'top_similarity': 0.0, 'votes': {}, 'examples': []}
+2026-11-01 11:19:16,713 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,713 DEBUG mood_agent: verify {'label': 'neutral', 'confidence': 0.4, 'problem': None}
+2026-11-01 11:19:16,713 DEBUG mood_agent: route {'status': 'needs_human_review', 'threshold': 0.55}
+2026-11-01 11:19:16,713 INFO mood_agent: label=neutral conf=0.40 status=needs_human_review source=rules only text='The package arrives Friday'
+2026-11-01 11:19:16,713 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,713 DEBUG mood_agent: rules {'label': 'positive', 'score': 1, 'positive_hits': ['excited'], 'negative_hits': []}
+2026-11-01 11:19:16,714 DEBUG mood_agent: retrieve {'top_similarity': 0.363, 'votes': {'positive': 0.755, 'mixed': 0.245}, 'examples': ['So excited for the weekend -> positive (0.363)', 'Proud of my little sister today -> positive (0.293)', "Sad to graduate but excited for what's next -> mixed (0.213)"]}
+2026-11-01 11:19:16,714 DEBUG mood_agent: plan {'decision': 'accept: rules and retrieved examples agree'}
+2026-11-01 11:19:16,714 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.89, 'problem': None}
+2026-11-01 11:19:16,714 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,714 INFO mood_agent: label=positive conf=0.89 status=ok source=rules+retrieval text='Excited and a little scared about tomorrow'
+2026-11-01 11:19:16,714 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,714 DEBUG mood_agent: rules {'label': 'positive', 'score': 1, 'positive_hits': ['great'], 'negative_hits': []}
+2026-11-01 11:19:16,714 DEBUG mood_agent: retrieve {'top_similarity': 0.287, 'votes': {'positive': 0.357, 'negative': 0.345, 'mixed': 0.298}, 'examples': ['Having a great day! -> positive (0.287)', 'Oh great, another Monday -> negative (0.278)', "Got the job but I'm nervous about moving -> mixed (0.24)"]}
+2026-11-01 11:19:16,714 DEBUG mood_agent: plan {'decision': 'accept: rules and retrieved examples agree'}
+2026-11-01 11:19:16,714 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.79, 'problem': None}
+2026-11-01 11:19:16,714 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,714 INFO mood_agent: label=positive conf=0.79 status=ok source=rules+retrieval text='Great job everyone on the launch!'
+2026-11-01 11:19:16,714 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,714 DEBUG mood_agent: rules {'label': 'negative', 'score': -1, 'positive_hits': [], 'negative_hits': ['hate']}
+2026-11-01 11:19:16,714 DEBUG mood_agent: retrieve {'top_similarity': 0.375, 'votes': {'mixed': 0.647, 'negative': 0.353}, 'examples': ["I don't hate it -> mixed (0.375)", 'Yeah because waiting two hours is so fun -> negative (0.283)', 'I love the way the sun sets over the ocean, but I hate how cold it gets at night -> mixed (0.144)']}
+2026-11-01 11:19:16,714 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,714 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.6, 'problem': None}
+2026-11-01 11:19:16,714 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,714 INFO mood_agent: label=negative conf=0.60 status=ok source=rules only text='I hate waiting in long lines'
+2026-11-01 11:19:16,714 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,714 DEBUG mood_agent: rules {'label': 'negative', 'score': -1, 'positive_hits': [], 'negative_hits': ['not happy']}
+2026-11-01 11:19:16,715 DEBUG mood_agent: retrieve {'top_similarity': 1.0, 'votes': {'negative': 0.629, 'positive': 0.281, 'neutral': 0.091}, 'examples': ['I am not happy about this -> negative (1.0)', 'Never been this happy in my life -> positive (0.24)', 'Not bad at all honestly -> positive (0.206)', "I'm not sure how I feel about the new schedule -> neutral (0.144)"]}
+2026-11-01 11:19:16,715 DEBUG mood_agent: plan {'decision': 'accept: rules and retrieved examples agree'}
+2026-11-01 11:19:16,715 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.86, 'problem': None}
+2026-11-01 11:19:16,715 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,715 INFO mood_agent: label=negative conf=0.86 status=ok source=rules+retrieval text='Not happy with how this turned out'
+2026-11-01 11:19:16,715 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,715 DEBUG mood_agent: rules {'label': 'positive', 'score': 1, 'positive_hits': ['not bad'], 'negative_hits': []}
+2026-11-01 11:19:16,715 DEBUG mood_agent: retrieve {'top_similarity': 0.461, 'votes': {'positive': 1.0}, 'examples': ['Not bad at all honestly -> positive (0.461)']}
+2026-11-01 11:19:16,715 DEBUG mood_agent: plan {'decision': 'accept: rules and retrieved examples agree'}
+2026-11-01 11:19:16,715 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.95, 'problem': None}
+2026-11-01 11:19:16,715 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,715 INFO mood_agent: label=positive conf=0.95 status=ok source=rules+retrieval text="This isn't bad at all"
+2026-11-01 11:19:16,715 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,715 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,715 DEBUG mood_agent: retrieve {'top_similarity': 0.276, 'votes': {'negative': 0.503, 'neutral': 0.286, 'positive': 0.211}, 'examples': ['Oh great, another Monday -> negative (0.276)', "it's whatever, I don't care -> neutral (0.276)", 'Today was a terrible day -> negative (0.209)', 'Having a great day! -> positive (0.203)']}
+2026-11-01 11:19:16,715 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,715 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.55, 'problem': None}
+2026-11-01 11:19:16,715 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,715 INFO mood_agent: label=negative conf=0.55 status=ok source=retrieval vote text="Oh wonderful, it's raining on my day off"
+2026-11-01 11:19:16,715 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,715 DEBUG mood_agent: rules {'label': 'positive', 'score': 1, 'positive_hits': ['love'], 'negative_hits': []}
+2026-11-01 11:19:16,716 DEBUG mood_agent: retrieve {'top_similarity': 0.292, 'votes': {'negative': 0.497, 'positive': 0.306, 'neutral': 0.197}, 'examples': ['bro this traffic is mid -> negative (0.292)', 'I love this class so much -> positive (0.278)', 'Just finished reading chapter four -> neutral (0.179)', 'Just what I needed today... a flat tire -> negative (0.159)']}
+2026-11-01 11:19:16,716 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,716 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.6, 'problem': None}
+2026-11-01 11:19:16,716 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,716 INFO mood_agent: label=positive conf=0.60 status=ok source=rules only text='I just love when my laptop crashes mid essay'
+2026-11-01 11:19:16,716 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,716 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,716 DEBUG mood_agent: retrieve {'top_similarity': 0.326, 'votes': {'positive': 1.0}, 'examples': ['this new album slaps -> positive (0.326)', 'we ate that presentation fr -> positive (0.316)']}
+2026-11-01 11:19:16,716 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,716 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.8, 'problem': None}
+2026-11-01 11:19:16,716 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,716 INFO mood_agent: label=positive conf=0.80 status=ok source=retrieval vote text='this burger slaps fr'
+2026-11-01 11:19:16,716 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,716 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,719 DEBUG mood_agent: retrieve {'top_similarity': 0.322, 'votes': {'negative': 0.54, 'positive': 0.46}, 'examples': ['bro this traffic is mid -> negative (0.322)', 'that test was lowkey easy ngl -> positive (0.274)']}
+2026-11-01 11:19:16,719 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,719 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.57, 'problem': None}
+2026-11-01 11:19:16,719 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,719 INFO mood_agent: label=negative conf=0.57 status=ok source=retrieval vote text='that movie was mid ngl'
+2026-11-01 11:19:16,719 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,719 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,719 DEBUG mood_agent: retrieve {'top_similarity': 0.316, 'votes': {'positive': 1.0}, 'examples': ['we ate that presentation fr -> positive (0.316)', 'that test was lowkey easy ngl -> positive (0.274)']}
+2026-11-01 11:19:16,719 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,719 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.8, 'problem': None}
+2026-11-01 11:19:16,719 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,719 INFO mood_agent: label=positive conf=0.80 status=ok source=retrieval vote text='ngl we ate that performance'
+2026-11-01 11:19:16,719 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,719 DEBUG mood_agent: rules {'label': 'negative', 'score': -1, 'positive_hits': [], 'negative_hits': ['😭']}
+2026-11-01 11:19:16,719 DEBUG mood_agent: retrieve {'top_similarity': 0.337, 'votes': {'negative': 1.0}, 'examples': ['my phone died and I missed the bus 💀 -> negative (0.337)']}
+2026-11-01 11:19:16,719 DEBUG mood_agent: plan {'decision': 'accept: rules and retrieved examples agree'}
+2026-11-01 11:19:16,719 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.95, 'problem': None}
+2026-11-01 11:19:16,719 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,719 INFO mood_agent: label=negative conf=0.95 status=ok source=rules+retrieval text='my plants died 😭'
+2026-11-01 11:19:16,719 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,720 DEBUG mood_agent: rules {'label': 'positive', 'score': 2, 'positive_hits': ['🎉', '🎉'], 'negative_hits': []}
+2026-11-01 11:19:16,720 DEBUG mood_agent: retrieve {'top_similarity': 0.449, 'votes': {'positive': 0.764, 'mixed': 0.236}, 'examples': ['that concert was sick -> positive (0.449)', "Got the job but I'm nervous about moving -> mixed (0.198)", 'Just got a promotion at work! Feeling on top of the world -> positive (0.191)']}
+2026-11-01 11:19:16,720 DEBUG mood_agent: plan {'decision': 'accept: rules and retrieved examples agree'}
+2026-11-01 11:19:16,720 DEBUG mood_agent: verify {'label': 'positive', 'confidence': 0.89, 'problem': None}
+2026-11-01 11:19:16,720 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,720 INFO mood_agent: label=positive conf=0.89 status=ok source=rules+retrieval text='got concert tickets 🎉🎉'
+2026-11-01 11:19:16,720 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,720 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,720 DEBUG mood_agent: retrieve {'top_similarity': 0.337, 'votes': {'negative': 1.0}, 'examples': ['my phone died and I missed the bus 💀 -> negative (0.337)']}
+2026-11-01 11:19:16,720 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,720 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.8, 'problem': None}
+2026-11-01 11:19:16,720 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,720 INFO mood_agent: label=negative conf=0.80 status=ok source=retrieval vote text='lost my keys again 💀'
+2026-11-01 11:19:16,720 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,720 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,720 DEBUG mood_agent: retrieve {'top_similarity': 0.726, 'votes': {'neutral': 0.836, 'negative': 0.164}, 'examples': ["I'm fine 🙂 -> neutral (0.726)", 'This is fine -> neutral (0.608)', "I'm so tired of being ignored -> negative (0.132)", "I'm so done with this week 😩 -> negative (0.129)"]}
+2026-11-01 11:19:16,720 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,720 DEBUG mood_agent: verify {'label': 'neutral', 'confidence': 0.72, 'problem': None}
+2026-11-01 11:19:16,720 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,720 INFO mood_agent: label=neutral conf=0.72 status=ok source=retrieval vote text="I'm fine"
+2026-11-01 11:19:16,720 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,720 DEBUG mood_agent: rules {'label': 'mixed', 'score': 0, 'positive_hits': ['grateful'], 'negative_hits': ['tired']}
+2026-11-01 11:19:16,721 DEBUG mood_agent: retrieve {'top_similarity': 0.397, 'votes': {'mixed': 0.402, 'negative': 0.43, 'positive': 0.168}, 'examples': ['Feeling tired but kind of hopeful -> mixed (0.397)', "I'm so done with this week 😩 -> negative (0.231)", "I'm so tired of being ignored -> negative (0.194)", 'Feeling grateful for the small things in life -> positive (0.166)']}
+2026-11-01 11:19:16,721 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,721 DEBUG mood_agent: verify {'label': 'mixed', 'confidence': 0.6, 'problem': None}
+2026-11-01 11:19:16,721 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,721 INFO mood_agent: label=mixed conf=0.60 status=ok source=rules only text='Tired but grateful for this week'
+2026-11-01 11:19:16,721 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,721 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,721 DEBUG mood_agent: retrieve {'top_similarity': 0.376, 'votes': {'mixed': 1.0}, 'examples': ['Missing home but loving my new city -> mixed (0.376)', "Had fun at the party but now I'm exhausted -> mixed (0.133)", 'Lowkey stressed but kind of proud of myself -> mixed (0.132)', 'Feeling tired but kind of hopeful -> mixed (0.132)']}
+2026-11-01 11:19:16,721 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,721 DEBUG mood_agent: verify {'label': 'mixed', 'confidence': 0.8, 'problem': None}
+2026-11-01 11:19:16,721 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,721 INFO mood_agent: label=mixed conf=0.80 status=ok source=retrieval vote text='Loved the trip but hated the flight home'
+2026-11-01 11:19:16,721 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,721 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,721 DEBUG mood_agent: retrieve {'top_similarity': 0.377, 'votes': {'neutral': 0.623, 'negative': 0.377}, 'examples': ['The meeting moved to Tuesday -> neutral (0.377)', "I'm fine 🙂 -> neutral (0.166)", "I'm so tired of being ignored -> negative (0.166)", "I'm so done with this week 😩 -> negative (0.163)"]}
+2026-11-01 11:19:16,721 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,721 DEBUG mood_agent: verify {'label': 'neutral', 'confidence': 0.61, 'problem': None}
+2026-11-01 11:19:16,721 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,721 INFO mood_agent: label=neutral conf=0.61 status=ok source=retrieval vote text="I'm meeting Sam at noon"
+2026-11-01 11:19:16,721 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,721 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,722 DEBUG mood_agent: retrieve {'top_similarity': 0.24, 'votes': {'mixed': 0.661, 'positive': 0.339}, 'examples': ["Got the job but I'm nervous about moving -> mixed (0.24)", 'that test was lowkey easy ngl -> positive (0.237)', 'Lowkey stressed but kind of proud of myself -> mixed (0.222)']}
+2026-11-01 11:19:16,722 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,722 DEBUG mood_agent: verify {'label': 'neutral', 'confidence': 0.4, 'problem': None}
+2026-11-01 11:19:16,722 DEBUG mood_agent: route {'status': 'needs_human_review', 'threshold': 0.55}
+2026-11-01 11:19:16,722 INFO mood_agent: label=neutral conf=0.40 status=needs_human_review source=rules only text='Lowkey nervous for the interview'
+2026-11-01 11:19:16,722 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,722 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,722 DEBUG mood_agent: retrieve {'top_similarity': 0.0, 'votes': {}, 'examples': []}
+2026-11-01 11:19:16,722 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,722 DEBUG mood_agent: verify {'label': 'neutral', 'confidence': 0.4, 'problem': None}
+2026-11-01 11:19:16,722 DEBUG mood_agent: route {'status': 'needs_human_review', 'threshold': 0.55}
+2026-11-01 11:19:16,722 INFO mood_agent: label=neutral conf=0.40 status=needs_human_review source=rules only text="Couldn't be prouder of my team"
+2026-11-01 11:19:16,722 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,722 DEBUG mood_agent: rules {'label': 'neutral', 'score': 0, 'positive_hits': [], 'negative_hits': []}
+2026-11-01 11:19:16,722 DEBUG mood_agent: retrieve {'top_similarity': 0.455, 'votes': {'negative': 1.0}, 'examples': ["I can't stand this weather -> negative (0.455)"]}
+2026-11-01 11:19:16,722 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,722 DEBUG mood_agent: verify {'label': 'negative', 'confidence': 0.8, 'problem': None}
+2026-11-01 11:19:16,722 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,722 INFO mood_agent: label=negative conf=0.80 status=ok source=retrieval vote text='The weather is cloudy'
+2026-11-01 11:19:16,722 DEBUG mood_agent: guardrail {'ok': True, 'escalate': False, 'reason': None}
+2026-11-01 11:19:16,722 DEBUG mood_agent: rules {'label': 'positive', 'score': 1, 'positive_hits': ['fun'], 'negative_hits': []}
+2026-11-01 11:19:16,723 DEBUG mood_agent: retrieve {'top_similarity': 0.41, 'votes': {'mixed': 0.711, 'negative': 0.289}, 'examples': ["Had fun at the party but now I'm exhausted -> mixed (0.41)", 'Yeah because waiting two hours is so fun -> negative (0.281)', 'Lowkey stressed but kind of proud of myself -> mixed (0.141)', 'Feeling tired but kind of hopeful -> mixed (0.141)']}
+2026-11-01 11:19:16,723 DEBUG mood_agent: plan {'decision': 'offline fallback: retrieval vote, else rules'}
+2026-11-01 11:19:16,723 DEBUG mood_agent: verify {'label': 'mixed', 'confidence': 0.66, 'problem': None}
+2026-11-01 11:19:16,723 DEBUG mood_agent: route {'status': 'ok', 'threshold': 0.55}
+2026-11-01 11:19:16,723 INFO mood_agent: label=mixed conf=0.66 status=ok source=retrieval vote text='That was a fun game but we lost'
+2026-11-01 11:19:16,723 INFO retriever: Loaded 61 examples from labeled_examples.csv
+2026-11-01 11:19:16,723 DEBUG mood_agent: guardrail {'ok': False, 'escalate': False, 'reason': 'Input is empty.'}
+2026-11-01 11:19:16,723 INFO mood_agent: label=None conf=0.00 status=rejected source=guardrail text=''
+2026-11-01 11:19:16,723 DEBUG mood_agent: guardrail {'ok': False, 'escalate': False, 'reason': 'Input is empty.'}
+2026-11-01 11:19:16,723 INFO mood_agent: label=None conf=0.00 status=rejected source=guardrail text='    '
+2026-11-01 11:19:16,723 DEBUG mood_agent: guardrail {'ok': False, 'escalate': False, 'reason': 'Input has no words or emojis to analyze.'}
+2026-11-01 11:19:16,723 INFO mood_agent: label=None conf=0.00 status=rejected source=guardrail text='!!!???'
+2026-11-01 11:19:16,723 DEBUG mood_agent: guardrail {'ok': False, 'escalate': False, 'reason': 'Input is longer than 500 characters.'}
+2026-11-01 11:19:16,723 INFO mood_agent: label=None conf=0.00 status=rejected source=guardrail text='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+2026-11-01 11:19:16,723 DEBUG mood_agent: guardrail {'ok': True, 'escalate': True, 'reason': 'Possible distress language detected; routed to a human reviewer.'}
+2026-11-01 11:19:16,723 INFO mood_agent: label=None conf=0.00 status=needs_human_review source=guardrail text='I want to die'
+2026-11-01 11:19:16,723 DEBUG mood_agent: guardrail {'ok': True, 'escalate': True, 'reason': 'Possible distress language detected; routed to a human reviewer.'}
+2026-11-01 11:19:16,723 INFO mood_agent: label=None conf=0.00 status=needs_human_review source=guardrail text='thinking about hurting myself'
