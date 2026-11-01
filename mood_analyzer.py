@@ -39,6 +39,8 @@ class MoodAnalyzer:
         # Counts from the most recent score_text call (used for "mixed").
         self.last_pos = 0
         self.last_neg = 0
+        # (token, +1/-1) pairs from the most recent score_text call.
+        self.last_hits: List[Tuple[str, int]] = []
 
     # ---------------------------------------------------------------------
     # Preprocessing
@@ -93,6 +95,7 @@ class MoodAnalyzer:
         score = 0
         self.last_pos = 0
         self.last_neg = 0
+        self.last_hits = []
 
         for i, token in enumerate(tokens):
             if token in self.positive_words or token in pos_emoji:
@@ -108,6 +111,8 @@ class MoodAnalyzer:
                 polarity = -polarity
 
             score += polarity
+            negated = (token in self.positive_words or token in pos_emoji) != (polarity > 0)
+            self.last_hits.append((f"not {token}" if negated else token, polarity))
             if polarity > 0:
                 self.last_pos += 1
             else:
@@ -143,32 +148,27 @@ class MoodAnalyzer:
         return "neutral"
 
     # ---------------------------------------------------------------------
-    # Explanations (optional but recommended)
+    # Structured output (used by the agent in agent.py)
+    # ---------------------------------------------------------------------
+
+    def analyze(self, text: str) -> Dict:
+        """Label + the evidence behind it, so other components can reason about it."""
+        label = self.predict_label(text)
+        return {
+            "label": label,
+            "score": sum(p for _, p in self.last_hits),
+            "positive_hits": [t for t, p in self.last_hits if p > 0],
+            "negative_hits": [t for t, p in self.last_hits if p < 0],
+        }
+
+    # ---------------------------------------------------------------------
+    # Explanations
     # ---------------------------------------------------------------------
 
     def explain(self, text: str) -> str:
-        """
-        Return a short string explaining WHY the model chose its label.
-
-        The current implementation is a placeholder so the code runs even
-        before you implement it.
-        """
-        tokens = self.preprocess(text)
-
-        positive_hits: List[str] = []
-        negative_hits: List[str] = []
-        score = 0
-
-        for token in tokens:
-            if token in self.positive_words:
-                positive_hits.append(token)
-                score += 1
-            if token in self.negative_words:
-                negative_hits.append(token)
-                score -= 1
-
+        """Explain the label using the same logic as score_text (incl. negation)."""
+        result = self.analyze(text)
         return (
-            f"Score = {score} "
-            f"(positive: {positive_hits or '[]'}, "
-            f"negative: {negative_hits or '[]'})"
+            f"Score = {result['score']} "
+            f"(positive: {result['positive_hits']}, negative: {result['negative_hits']})"
         )
