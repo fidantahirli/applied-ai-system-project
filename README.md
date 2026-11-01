@@ -152,7 +152,7 @@ $ pytest -q
 - **What worked:** accuracy on held-out posts went from **0.54 to 0.79**. Slang went from 0/4 to 3/4 and sarcasm from 0/2 to 1/2. When the agent did not ask for review, it was right 86% of the time. All guardrail cases pass.
 - **What didn't:** retrieval can match on a *topic* word instead of a *feeling*. "The weather is cloudy" matched "I can't stand this weather" and came back `negative` with 0.80 confidence. It also lost one easy case the rules got right. "I just love when my laptop crashes" is still read as positive offline.
 - **What I learned:** the test set must stay separate from the knowledge base. `evaluate.py` refuses to run if any test post is also in the knowledge base. One fix ("I am so happy" → negative) was found *while looking at the test set*, so these numbers are a little optimistic.
-- **Gemini mode:** _TODO: run `python evaluate.py` with your key and paste the third row here._
+- **Gemini mode:** not evaluated; all results above are offline (rules + retrieval). The Gemini path is covered by unit tests that use a fake LLM.
 
 ## Design decisions and trade-offs
 
@@ -165,9 +165,9 @@ $ pytest -q
 
 ## Reflection
 
-_TODO (your words): what this project taught you about AI and problem-solving._
+This project taught me that making an AI system trustworthy is mostly about what happens when it is unsure. Adding retrieval raised accuracy from 0.54 to 0.79, but the most useful parts were the guardrails, the confidence threshold, and the human review path, because they decide what the system does when it might be wrong. I also learned to treat a test set as something to protect: once I looked at test results to fix a bug, the score became a little less honest, and I wrote that down. The failures, like "The weather is cloudy" being labeled negative with high confidence, taught me more about how retrieval works than the successes did.
 
 ## Portfolio
 
-- Code: _link to this repo_
-- _TODO: one paragraph on what this project says about you as an AI engineer._
+- Code: https://github.com/fidantahirli/applied-ai-system-project
+- **What this project says about me as an AI engineer:** I build AI systems that are honest about their limits. Instead of chasing a perfect score, I measured my system against a baseline on data it had never seen, documented where it fails and who it might fail for, and designed it to hand uncertain or sensitive cases to a person. I build incrementally, test each piece before moving on, and make sure anyone can clone my work and reproduce my results without special access.
