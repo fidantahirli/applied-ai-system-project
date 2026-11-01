@@ -1,3 +1,4 @@
 scikit-learn
-matplotlib
-ipykernel
+pytest
+# Optional: only needed for the Gemini (LLM) mode. Offline mode works without it.
+google-genai
