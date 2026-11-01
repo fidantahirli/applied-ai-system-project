@@ -25,7 +25,7 @@ Extends the Module 3 Mood Machine. The original Module 3 model card is in this r
 |---|---|---|---|
 | Rules only (Module 3) | 0.54 | 0.54 | 0 |
 | Agent offline (rules + RAG) | 0.79 | 0.86 | 3 |
-| Agent + Gemini | _TODO: run with API key_ | | |
+| Agent + Gemini | Not evaluated (offline only) | | |
 
 Guardrail checks: 6/6 passed. Unit tests: 15/15 passed.
 
@@ -56,13 +56,16 @@ Guardrail checks: 6/6 passed. Unit tests: 15/15 passed.
 
 ## 6. What surprised me during reliability testing
 
-_TODO (your words). Candidates from the real results:_ adding retrieval made one *easy* case worse ("The weather is cloudy"); the first offline design let a shared word ("happy" in "I am **not** happy") flip a clearly positive post; and confidence was highest on one of the wrong answers.
+The biggest surprise was that adding retrieval made one *easy* case worse. "The weather is cloudy" was correct with the old rules, but the agent labeled it `negative` with 0.80 confidence, because the word "weather" matched "I can't stand this weather" in the knowledge base. That was one of the most confident answers in the whole test, and it was wrong. Higher confidence did not mean more correct.
+
+I was also surprised by how easily one shared word could flip a result. In the first offline design, "I am so happy right now" came back `negative` because its closest match was "I am **not** happy about this." The fix was to let retrieval overrule the keyword rules only when the rules found nothing, or when at least 70% of the similar posts agreed. Overall, accuracy went up from 0.54 to 0.79, but the failures taught me more than the score did: retrieval matches words, not meaning.
 
 ## 7. Collaboration with AI
 
-_TODO (required, in your words). Describe how you used an AI assistant on this project, then answer:_
+I used Claude as a coding partner throughout this project. It helped me plan the architecture (rules → retrieval → planner → verifier → human review), write the new modules, design the tests and evaluation script, and draft the documentation. I tested every step myself before committing it: I ran each file on example posts, checked that `main.py` still gave the original 0.76, and ran `pytest` and `evaluate.py`.
 
-- **One suggestion I accepted, and why:** _..._
-- **One suggestion I rejected or changed, and why:** _..._
+- **One suggestion I accepted, and why:** making the system work fully offline, and testing it with a fake LLM instead of real Gemini calls. I accepted this because it makes the project reproducible. Anyone can clone and run it without an API key, and the tests give the same result every time instead of depending on the internet or API limits.
 
-_Hint: these must be things that really happened in your own build. Possible types: a design that was over-engineered, a confidence formula you simplified, a fallback rule that caused a bug, a feature you cut for scope._
+- **One suggestion I rejected or changed, and why:** Claude first gave me the whole finished project as one zip to drop into my repo. I didn't accept that as written. I added it one piece at a time instead (data, retriever, analyzer, guardrails, LLM client, agent, tests, evaluation, docs), running and checking each part before committing. I changed the approach because the assignment requires meaningful commit history, and because building it step by step meant I understood and could explain each component. I also didn't take its shortcut for setting up the repo and followed the official Step 0 exactly (clone the original repo, then point it at a new remote).
+
+- **A design suggestion that had to be revised:** Claude's first offline fallback let the retrieval vote overrule the keyword rules whenever they disagreed. Testing showed that this flipped "I am so happy right now" to `negative`. We changed the rule so retrieval needs at least 70% agreement among the similar posts before it can overrule clear keywords, and added a regression test so the bug can't come back.
